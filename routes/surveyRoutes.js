@@ -17,7 +17,9 @@ module.exports = app => {
             recipients: false
         });
 
+        console.log(surveys);
         res.send(surveys);
+
     });
 
 
@@ -78,7 +80,7 @@ module.exports = app => {
             }, {
                 $inc: { [choice]: 1 },
                 $set: { 'recipients.$.responded': true },
-                lastResponded: new Date()
+                dateSent: new Date()
             }).exec();
         })
         .value();
